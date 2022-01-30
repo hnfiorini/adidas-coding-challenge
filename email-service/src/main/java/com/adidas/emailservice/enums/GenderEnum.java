@@ -1,4 +1,4 @@
-package com.adidas.subscriptionservice.enums;
+package com.adidas.emailservice.enums;
 
 public enum GenderEnum {
     MALE,

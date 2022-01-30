@@ -1,27 +1,23 @@
 package com.adidas.subscriptionservice.services;
 
 import com.adidas.subscriptionservice.dto.Subscription;
+import com.adidas.subscriptionservice.mappers.SubscriptionMapper;
+import com.adidas.subscriptionservice.model.SubscriptionEntity;
+import com.adidas.subscriptionservice.repositories.SubscriptionRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.stream.annotation.EnableBinding;
-import org.springframework.cloud.stream.messaging.Source;
-import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-@EnableBinding(Source.class)
 public class SubscriptionService {
 
     @Autowired
-    private Source source;
+    private SubscriptionRepository subscriptionRepository;
 
-    public void sendMessage(String message) {
-        log.info(String.format("$$ -> Producing message --> %s", message));
-
-        Subscription messageObj = new Subscription(message);
-
-        source.output().send(MessageBuilder.withPayload(messageObj).build());
+    public Subscription newSubscription(Subscription subscription) {
+        SubscriptionEntity entity = subscriptionRepository.save(SubscriptionMapper.dtoToEntity(subscription));
+        return SubscriptionMapper.entityToDto(entity);
     }
 }
 

@@ -1,5 +1,6 @@
 package com.adidas.emailservice.services;
 
+import com.adidas.emailservice.dto.Subscription;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
@@ -10,26 +11,8 @@ import org.springframework.cloud.stream.messaging.Sink;
 public class EmailService {
 
     @StreamListener(Sink.INPUT)
-    public void consume(Message message){
+    public void consume(Subscription message){
         log.info(String.format("$$ -> Consumed Message -> %s", message));
     }
 
-    public static class Message{
-        private String message;
-
-        public String getMessage() {
-            return message;
-        }
-
-        public void setMessage(String message) {
-            this.message = message;
-        }
-
-        @Override
-        public String toString() {
-            return "Message{" +
-                    "message='" + message + '\'' +
-                    '}';
-        }
-    }
 }

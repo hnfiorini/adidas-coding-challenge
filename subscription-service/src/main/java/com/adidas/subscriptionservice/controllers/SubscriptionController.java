@@ -1,7 +1,9 @@
 package com.adidas.subscriptionservice.controllers;
 
+import com.adidas.subscriptionservice.dto.Subscription;
 import com.adidas.subscriptionservice.services.SubscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,27 +19,27 @@ public class SubscriptionController {
 
     @GetMapping
     public void sendMessage(@RequestParam("message") String message){
-        this.producer.sendMessage(message);
+        //this.producer.sendMessage(message);
     }
 
+
+
+
     @PostMapping
-    public void newSubscription(@RequestParam("message") String message){
-        this.producer.sendMessage(message);
+    public ResponseEntity<Subscription> newSubscription(@RequestBody Subscription subscription){
+        return ResponseEntity.ok(this.producer.newSubscription(subscription));
     }
 
     @PatchMapping
     public void cancelSubscription(@RequestParam("message") String message){
-        this.producer.sendMessage(message);
     }
 
     @GetMapping
     public void getDetailsFromSubscription(@RequestParam("message") String message){
-        this.producer.sendMessage(message);
     }
 
     @GetMapping
     public void getAllSubscriptions(@RequestParam("message") String message){
-        this.producer.sendMessage(message);
     }
 
 }

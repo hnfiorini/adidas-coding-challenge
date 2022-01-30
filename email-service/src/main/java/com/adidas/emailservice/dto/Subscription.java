@@ -1,6 +1,6 @@
-package com.adidas.subscriptionservice.dto;
+package com.adidas.emailservice.dto;
 
-import com.adidas.subscriptionservice.enums.GenderEnum;
+import com.adidas.emailservice.enums.GenderEnum;
 import lombok.*;
 import org.springframework.lang.NonNull;
 
@@ -12,11 +12,11 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Subscription {
-    @NonNull
+    @org.springframework.lang.NonNull
     private String email;
     private String firstName;
     private GenderEnum gender;
-    @NonNull
+    @org.springframework.lang.NonNull
     private LocalDate dayOfBirth;
     private Boolean consent;
     @NonNull

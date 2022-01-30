@@ -29,4 +29,6 @@ public class SubscriptionEntity {
     private boolean consent;
     @Column
     private String idNewsletter;
+    @Column
+    private boolean active;
 }

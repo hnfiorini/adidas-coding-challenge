@@ -8,16 +8,39 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import java.util.Optional;
+
 @Service
 @Slf4j
 public class SubscriptionService {
 
     @Autowired
     private SubscriptionRepository subscriptionRepository;
+    @Autowired
+    private EmailService emailService;
 
     public Subscription newSubscription(Subscription subscription) {
         SubscriptionEntity entity = subscriptionRepository.save(SubscriptionMapper.dtoToEntity(subscription));
+        emailService.sendEmail(subscription);
         return SubscriptionMapper.entityToDto(entity);
+    }
+
+    public Iterable<SubscriptionEntity> getAllSubscriptions() {
+        return subscriptionRepository.findAll();
+    }
+
+    public Subscription getSubscription(String id) {
+        Optional<SubscriptionEntity> entityOp = subscriptionRepository.findById(Long.getLong(id));
+        return entityOp.map(SubscriptionMapper::entityToDto).orElse(null);
+    }
+
+    @Transactional
+    public void cancelSubscription(long subscription) {
+        Optional<SubscriptionEntity> entity = subscriptionRepository.findById(subscription);
+        if (entity.isPresent()) {
+            entity.get().setActive(false);
+        }
     }
 }
 

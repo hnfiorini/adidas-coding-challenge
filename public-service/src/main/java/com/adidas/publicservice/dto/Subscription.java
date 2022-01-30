@@ -1,6 +1,6 @@
-package com.adidas.subscriptionservice.dto;
+package com.adidas.publicservice.dto;
 
-import com.adidas.subscriptionservice.enums.GenderEnum;
+import com.adidas.publicservice.enums.GenderEnum;
 import lombok.*;
 import org.springframework.lang.NonNull;
 

@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,8 +30,10 @@ public class SubscriptionService {
         return SubscriptionMapper.entityToDto(entity);
     }
 
-    public Iterable<SubscriptionEntity> getAllSubscriptions() {
-        return subscriptionRepository.findAll();
+    public List<Subscription> getAllSubscriptions() {
+        List<Subscription> result = new ArrayList<Subscription>();
+        subscriptionRepository.findAll().forEach(e -> result.add(SubscriptionMapper.entityToDto(e)));
+        return result;
     }
 
     public Subscription getSubscription(String id) {

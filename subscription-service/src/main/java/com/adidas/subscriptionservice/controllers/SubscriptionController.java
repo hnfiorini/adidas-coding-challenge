@@ -2,10 +2,7 @@ package com.adidas.subscriptionservice.controllers;
 
 import com.adidas.subscriptionservice.services.SubscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/archive")
@@ -19,7 +16,27 @@ public class SubscriptionController {
     }
 
     @GetMapping
-    public void sendMessageToKafkaTopic(@RequestParam("message") String message){
+    public void sendMessage(@RequestParam("message") String message){
+        this.producer.sendMessage(message);
+    }
+
+    @PostMapping
+    public void newSubscription(@RequestParam("message") String message){
+        this.producer.sendMessage(message);
+    }
+
+    @PatchMapping
+    public void cancelSubscription(@RequestParam("message") String message){
+        this.producer.sendMessage(message);
+    }
+
+    @GetMapping
+    public void getDetailsFromSubscription(@RequestParam("message") String message){
+        this.producer.sendMessage(message);
+    }
+
+    @GetMapping
+    public void getAllSubscriptions(@RequestParam("message") String message){
         this.producer.sendMessage(message);
     }
 

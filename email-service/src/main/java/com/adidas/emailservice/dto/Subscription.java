@@ -11,13 +11,14 @@ import java.time.LocalDate;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Subscription {
     @org.springframework.lang.NonNull
     private String email;
     private String firstName;
     private GenderEnum gender;
     @org.springframework.lang.NonNull
-    private LocalDate dayOfBirth;
+    private LocalDate dateOfBirth;
     private Boolean consent;
     @NonNull
     private String idNewsletter;

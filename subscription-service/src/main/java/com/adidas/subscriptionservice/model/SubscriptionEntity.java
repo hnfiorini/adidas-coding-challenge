@@ -1,9 +1,7 @@
 package com.adidas.subscriptionservice.model;
 
 import com.adidas.subscriptionservice.enums.GenderEnum;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -12,6 +10,8 @@ import java.time.LocalDate;
 @Setter
 @Builder
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class SubscriptionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

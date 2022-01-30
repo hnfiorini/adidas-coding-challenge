@@ -8,7 +8,7 @@ public class SubscriptionMapper {
     public static SubscriptionEntity dtoToEntity(Subscription model) {
         return SubscriptionEntity.builder()
                 .consent(model.getConsent())
-                .dayOfBirth(model.getDayOfBirth())
+                .dayOfBirth(model.getDateOfBirth())
                 .firstName(model.getFirstName())
                 .email(model.getEmail())
                 .gender(model.getGender())
@@ -19,7 +19,7 @@ public class SubscriptionMapper {
     public static Subscription entityToDto(SubscriptionEntity entity) {
         return Subscription.builder()
                 .consent(entity.isConsent())
-                .dayOfBirth(entity.getDayOfBirth())
+                .dateOfBirth(entity.getDayOfBirth())
                 .email(entity.getEmail())
                 .firstName(entity.getFirstName())
                 .gender(entity.getGender())

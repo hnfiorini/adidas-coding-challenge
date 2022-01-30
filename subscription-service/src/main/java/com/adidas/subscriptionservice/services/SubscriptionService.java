@@ -21,7 +21,9 @@ public class SubscriptionService {
     private EmailService emailService;
 
     public Subscription newSubscription(Subscription subscription) {
-        SubscriptionEntity entity = subscriptionRepository.save(SubscriptionMapper.dtoToEntity(subscription));
+        SubscriptionEntity subscriptionEntity = SubscriptionMapper.dtoToEntity(subscription);
+        subscriptionEntity.setActive(true);
+        SubscriptionEntity entity = subscriptionRepository.save(subscriptionEntity);
         emailService.sendEmail(subscription);
         return SubscriptionMapper.entityToDto(entity);
     }

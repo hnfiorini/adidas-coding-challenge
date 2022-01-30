@@ -18,10 +18,10 @@ public class SubscriptionController {
         this.subscriptionService = producer;
     }
 
-    @GetMapping
-    public void sendMessage(@RequestParam("message") String message){
-        //this.producer.sendMessage(message);
-    }
+//    @GetMapping
+//    public void sendMessage(@RequestParam("message") String message){
+//        //this.producer.sendMessage(message);
+//    }
 
 
 

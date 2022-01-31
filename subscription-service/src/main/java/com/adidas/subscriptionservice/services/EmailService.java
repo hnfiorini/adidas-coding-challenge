@@ -15,7 +15,7 @@ public class EmailService {
     private Source source;
 
     public void sendEmail(Subscription subscription) {
-        log.info(String.format("$$ -> Producing message --> %s", subscription));
+        log.info(String.format("$$ -> Sending mail --> %s", subscription));
         source.output().send(MessageBuilder.withPayload(subscription).build());
     }
 

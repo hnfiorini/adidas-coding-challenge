@@ -24,6 +24,7 @@ public class SubscriptionMapper {
                 .firstName(entity.getFirstName())
                 .gender(entity.getGender())
                 .idNewsletter(entity.getIdNewsletter())
+                .idSubscription(entity.getId())
                 .build();
     }
 }

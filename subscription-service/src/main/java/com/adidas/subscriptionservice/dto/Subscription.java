@@ -22,5 +22,6 @@ public class Subscription {
     private Boolean consent;
     @NonNull
     private String idNewsletter;
+    private Long idSubscription;
 
 }

@@ -19,17 +19,10 @@ public class SubscriptionController {
         this.subscriptionService = producer;
     }
 
-//    @GetMapping
-//    public void sendMessage(@RequestParam("message") String message){
-//        //this.producer.sendMessage(message);
-//    }
-
-
-
-
     @PostMapping("/subscriptions")
-    public ResponseEntity<Subscription> newSubscription(@RequestBody Subscription subscription) {
-        return new ResponseEntity<Subscription>(this.subscriptionService.newSubscription(subscription), HttpStatus.CREATED);
+    public ResponseEntity<Long> newSubscription(@RequestBody Subscription subscription) {
+        return new ResponseEntity<Long>(this.subscriptionService.newSubscription(subscription).getIdSubscription(),
+                HttpStatus.CREATED);
     }
 
     @PatchMapping("/subscriptions/{id}")

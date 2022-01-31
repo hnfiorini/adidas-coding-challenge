@@ -29,7 +29,7 @@ public class SwaggerConfig {
 
     private ApiInfo getApiInfo() {
         return new ApiInfo(
-                "Subscrition Service API",
+                "Subscription Service API",
                 "Subscription Service API Description",
                 "1.0",
                 "https://www.adidas.es/terms_and_conditions",

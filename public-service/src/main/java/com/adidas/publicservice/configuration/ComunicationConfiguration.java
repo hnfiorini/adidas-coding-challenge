@@ -1,4 +1,4 @@
-package com.adidas.publicservice;
+package com.adidas.publicservice.configuration;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
 public class ComunicationConfiguration {
 
     @Bean
-    @LoadBalanced
+    //@LoadBalanced
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
         RestTemplate restTemplate = builder.build();
         return restTemplate;

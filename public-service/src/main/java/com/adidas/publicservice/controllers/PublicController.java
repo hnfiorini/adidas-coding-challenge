@@ -20,8 +20,8 @@ public class PublicController {
     }
 
     @PostMapping("/subscriptions")
-    public ResponseEntity<Subscription> newSubscription(@RequestBody Subscription subscription) {
-        return new ResponseEntity<Subscription>(this.publicService.newSubscription(subscription), HttpStatus.CREATED);
+    public ResponseEntity<Long> newSubscription(@RequestBody Subscription subscription) {
+        return new ResponseEntity<Long>(this.publicService.newSubscription(subscription), HttpStatus.CREATED);
     }
 
     @PatchMapping("/subscriptions/{id}")

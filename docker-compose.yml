@@ -17,9 +17,10 @@ services:
     ports:
       - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
     networks:
-            - spring-cloud-network  
+      - spring-cloud-network  
   eureka-server:
         container_name: eureka-server
+        hostname: eureka-server
         build:
             context: eureka-server
             dockerfile: Dockerfile
@@ -28,14 +29,14 @@ services:
             - "8761:8761"
         networks:
             - spring-cloud-network    
-  gateway:
-        container_name: gateway
+  gateway-service:
+        container_name: gateway-service
         build:
-            context: gateway
+            context: gateway-service
             dockerfile: Dockerfile
-        image: gateway:latest
+        image: gateway-service:latest
         ports:
-            - 8080:8080
+            - 8005:8005
         networks:
             - spring-cloud-network    
   public-service:
@@ -46,8 +47,10 @@ services:
         image: public-service:latest
         ports:
             - 8001:8001
+        environment:        
+            - GATEWAY_URL=http://gateway-service:8005
         links:
-          - "eureka-server"    
+          - "eureka-server"
         networks:
             - spring-cloud-network    
   subscription-service:
@@ -62,14 +65,8 @@ services:
         links:
           - "eureka-server"
           - "rabbitmq"    
-        environment:            
-            SPRING_APPLICATION_JSON: '{
-              "spring.datasource.url"  : "jdbc:mysql://mysqldb:$MYSQLDB_DOCKER_PORT/$MYSQLDB_DATABASE?useSSL=false",
-              "spring.datasource.username" : "$MYSQLDB_USER",
-              "spring.datasource.password" : "$MYSQLDB_ROOT_PASSWORD",
-              "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
-              "spring.jpa.hibernate.ddl-auto" : "create-drop"
-            }'
+        environment:
+          - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/subscription-adidasDB
         depends_on:
             - mysqldb    
         networks:

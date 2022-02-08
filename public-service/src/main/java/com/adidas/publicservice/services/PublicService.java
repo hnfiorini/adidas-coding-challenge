@@ -1,6 +1,7 @@
 package com.adidas.publicservice.services;
 
 import com.adidas.publicservice.dto.Subscription;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreaker;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class PublicService {
 
     @Autowired

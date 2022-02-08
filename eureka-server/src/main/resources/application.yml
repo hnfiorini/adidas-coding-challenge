@@ -3,8 +3,15 @@ server:
   application:
     name: eureka-discovery-service
 eureka:
+  instance:
+    hostname: eureka-server
+    prefer-ip-address: true
+    lease-expiration-duration-in-seconds: 30
+    lease-renewal-interval-in-seconds: 30
   client:
     registerWithEureka: false
     fetchRegistry: false
     service-url:
       defaultZone: http://eureka-server:8761/eureka
+  server:
+    enable-self-preservation: false
